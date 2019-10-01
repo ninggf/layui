@@ -27,7 +27,7 @@ var isLayui = window.layui && layui.define, $, win, ready = {
     return jsPath.substring(0, jsPath.lastIndexOf('/') + 1);
   }(),
 
-  config: {}, end: {}, minIndex: 0, minLeft: [],
+  config: {}, end: {}, destroy:{}, minIndex: 0, minLeft: [],
   btn: ['&#x786E;&#x5B9A;', '&#x53D6;&#x6D88;'],
 
   //五种原始层模式
@@ -688,6 +688,8 @@ Class.pt.callback = function(){
   });
 
   config.end && (ready.end[that.index] = config.end);
+  // add destroy
+  config.destroy && (ready.destroy[that.index] = config.destroy);
 };
 
 //for ie6 恢复select
@@ -905,6 +907,10 @@ layer.close = function(index){
   var layero = $('#'+ doms[0] + index), type = layero.attr('type'), closeAnim = 'layer-anim-close';
   if(!layero[0]) return;
   var WRAP = 'layui-layer-wrap', remove = function(){
+    // call destroy before end
+    typeof ready.destroy[index] === 'function' && ready.destroy[index](layero,index);
+    delete ready.destroy[index];
+
     if(type === ready.type[1] && layero.attr('conType') === 'object'){
       layero.children(':not(.'+ doms[5] +')').remove();
       var wrap = layero.find('.'+WRAP);
