@@ -175,14 +175,14 @@
         : (/^\{\/\}/.test(that.modules[item]) ? '' : (config.base || ''))
       ) + (that.modules[item] || item) + '.js';
 
-      // 支持plugin与module前缀
-      if (/^plugin\./.test(item)){
-          url = dir + 'plugins/' + item.replace(/^plugin\./,'') + '.js';
+      // 支持ext与module前缀
+      if (/^ext\./.test(item)){
+          url = dir + 'lay/exts/' + item.replace(/^ext\./,'') + '.js';
       } else if (/^module\./.test(item)){
           url = (config.base || '') + item.replace(/^module\./,'').replace('.','/assets/')+'.js'
-      }
+      } 
       // dev 支持
-      if(config.debug){
+      if(config.devMode && /^(ext|module)\./.test(item)){
           url = url.replace(/\.js$/,'.dev.js')
       }
 
@@ -243,7 +243,7 @@
     ,timeout = 0;
     
     // css file end with .dev.css
-    if(config.debug){
+    if(config.devMode){
         href = href.replace(/\.css/,'.dev.css');
     }
 
