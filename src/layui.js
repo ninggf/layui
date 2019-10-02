@@ -166,7 +166,6 @@
     //首次加载模块
     if(!config.modules[item]){
       var node = doc.createElement('script')
-
       //如果是内置模块，则按照 dir 参数拼接模块路径
       //如果是扩展模块，则判断模块路径值是否为 {/} 开头，
       //如果路径值是 {/} 开头，则模块路径即为后面紧跟的字符。
@@ -187,7 +186,6 @@
       }
 
       url = url.replace(/^\{\/\}/, '');
-
       node.async = true;
       node.charset = 'utf-8';
       node.src = url + function(){
