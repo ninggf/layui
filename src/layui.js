@@ -175,13 +175,15 @@
       ) + (that.modules[item] || item) + '.js';
 
       // 支持ext与module前缀
-      if (/^ext\./.test(item)){
-          url = dir + 'lay/exts/' + item.replace(/^ext\./,'') + '.js';
-      } else if (/^module\./.test(item)){
-          url = (config.base || '') + item.replace(/^module\./,'').replace('.','/assets/')+'.js'
-      } 
+      if (/^&/.test(item)){
+          url = dir + 'lay/exts/' + item.replace(/^&/,'') + '.js';
+      } else if (/^@/.test(item)){
+          url = (config.base || '') + item.replace(/^@/,'').replace('.','/js/')+'.js'
+      } else if(/^\$/.test(item)){
+          url = (config.theme || '') + item.replace(/^\$/,'').replace('.','/js/')+'.js'
+      }
       // dev 支持
-      if(config.devMode && /^(ext|module)\./.test(item)){
+      if(config.devMode){
           url = url.replace(/\.js$/,'.dev.js')
       }
 
