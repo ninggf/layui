@@ -125,7 +125,7 @@
       layui.jquery = layui.$ = jQuery;
     }
     
-    var item = apps[0]
+    var item = apps[0] ? apps[0].replace(/[^\/]+?\//,'') : undefined
     ,timeout = 0;
     exports = exports || [];
 
