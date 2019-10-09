@@ -178,12 +178,12 @@
       if (/^&/.test(item)){
           url = dir + 'lay/exts/' + item.replace(/^&/,'') + '.js';
       } else if (/^@/.test(item)){
-          url = (config.base || '') + item.replace(/^@/,'').replace('.','/js/')+'.js'
+          url = (config.module || '') + item.replace(/^@/,'').replace('.','/js/')+'.js'
       } else if(/^\$/.test(item)){
           url = (config.theme || '') + item.replace(/^\$/,'').replace('.','/js/')+'.js'
       }
       // dev 支持
-      if(config.devMode){
+      if(config.devMode && /^(&|@|\$)/.test(item)){
           url = url.replace(/\.js$/,'.dev.js')
       }
 
