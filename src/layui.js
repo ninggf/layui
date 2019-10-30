@@ -183,7 +183,7 @@
           url = (config.theme || '') + item.replace(/^\$/,'').replace('.','/js/')+'.js'
       }
       // dev 支持
-      if(config.devMode && /^(&|@|\$)/.test(item)){
+      if(config.devMode && (/^(&|@|\$)/.test(item)) || modules[item]){
           url = url.replace(/\.js$/,'.dev.js')
       }
 
