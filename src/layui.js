@@ -198,10 +198,6 @@
       } else if(/^\$/.test(item)){
           url = (config.theme || '') + item.replace(/^\$/,'').replace('.','/js/')+'.js'
       }
-      // dev 支持
-      if(config.devMode && (/^(&|@|\$)/.test(item)) || modules[item]){
-          url = url.replace(/\.js$/,'.dev.js')
-      }
 
       url = url.replace(/^\{\/\}/, '');
       node.async = true;
@@ -258,11 +254,6 @@
     ,id = link.id = 'layuicss-'+app
     ,timeout = 0;
     
-    // css file end with .dev.css
-    if(config.devMode){
-        href = href.replace(/\.css/,'.dev.css');
-    }
-
     link.rel = 'stylesheet';
     link.href = href + (config.debug ? '?v='+new Date().getTime() : '');
     link.media = 'all';
