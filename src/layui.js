@@ -235,7 +235,18 @@
     
     return that;
   };
-
+  //注入内置css
+  Layui.prototype.injectCss = function(id,style){
+    if(doc.getElementById(id)){
+        return;
+    }
+    var link  = doc.createElement('style')
+        ,head = doc.getElementsByTagName('head')[0];
+    link.id   = id;
+    link.media = 'all';
+    link.innerHTML= style.replace(/url\s*\(['"]?@(.+?)['"]?\)/ig, 'url('+(this.config.module || '/')+'$1)');
+    head.appendChild(link);
+  };
   //获取节点的style属性值
   Layui.prototype.getStyle = function(node, name){
     var style = node.currentStyle ? node.currentStyle : win.getComputedStyle(node, null);
