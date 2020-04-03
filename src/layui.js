@@ -244,7 +244,7 @@
         ,head = doc.getElementsByTagName('head')[0];
     link.id   = id;
     link.media = 'all';
-    link.innerHTML= style.replace(/url\s*\(['"]?@(.+?)['"]?\)/ig, 'url('+(this.config.module || '/')+'$1)');
+    link.innerHTML= style.replace(/url\s*\(['"]?@(.+?)['"]?\)/ig, 'url('+(config.module || '/')+'$1)');
     head.appendChild(link);
   };
   //获取节点的style属性值
