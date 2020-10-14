@@ -693,6 +693,12 @@ layui.define(['laytpl', 'laypage', 'layer', 'form', 'util'], function(exports){
       
       //参数
       var data = $.extend(params, options.where);
+
+      //用于参数签名
+      if($.isFunction(options.data2)){
+        data = options.data2(data)
+      }
+
       if(options.contentType && options.contentType.indexOf("application/json") == 0){ //提交 json 格式
         data = JSON.stringify(data);
       }
