@@ -62,6 +62,9 @@ layui.define(['laytpl', 'laypage', 'layer', 'form', 'util'], function(exports){
       ,resize: function(){ //重置表格尺寸/结构
         that.resize.call(that);
       }
+      ,reloadData: function (){//
+        that.pullData.call(that,1);
+      }
     }
   }
   
