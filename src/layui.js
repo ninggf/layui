@@ -192,7 +192,7 @@
       if (/^&/.test(item)){
           url = dir + 'lay/exts/' + item.replace(/^&/,'') + '.js';
       } else if (/^@/.test(item)){
-          url = (config.module || '') + item.replace(/^@/,'').replace('.','/js/')+'.js'
+          url = (config.module || '') + item.replace(/^@/,'').replace('.','/assets/js/')+'.js'
       } else if(/^\$/.test(item)){
           url = (config.theme || '') + item.replace(/^\$/,'').replace('.','/js/')+'.js'
       }
